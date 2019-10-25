@@ -83,8 +83,9 @@ function handleItemCheckClicked() {
 
 function deleteCheckedForListItem (itemId) {
   console.log(`Deleting checked property for item with id ${itemId}`);
-  const deleteItem = STORE.find(item => item.id === itemId);
-  $(this).remove();
+  const deleteItem = STORE.findIndex(item => item.id === itemId);
+  console.log(deleteItem);
+  STORE.splice(deleteItem, 1);
 }
 
 function handleDeleteItemClicked() {
@@ -93,7 +94,7 @@ function handleDeleteItemClicked() {
 
     const deleteId = getItemIdFromElement(event.currentTarget);
 
-    deleteCheckedForListItem();
+    deleteCheckedForListItem(deleteId);
     renderShoppingList();
   })
  
