@@ -13,9 +13,23 @@ const STORE = [
   {name: "apples", checked: false},
   {name: "oranges", checked: false},
   {name: "milk", checked: true},
-  {name: "bread", checked: false}
+  {name: "bread", checked: false},
+  {name: "fish", checked: false}
 ];
 
+function generateItemElement(item, itemIndex, template) {
+  return `
+    <li>${item.name}</li>`;
+}
+
+
+function generateShoppingItemsString(shoppingList) {
+  console.log("Generating shopping list element");
+
+  const items = shoppingList.map((item, index) => generateItemElement(item, index));
+  
+  return items.join("");
+}
 
 function renderShoppingList() {
   // this function will be responsible for rendering the shopping list in
@@ -28,7 +42,7 @@ function renderShoppingList() {
 
 
   console.log('`renderShoppingList` ran');
-  const shoppingListItemsString = '<li>apples</li>';
+  const shoppingListItemsString = generateShoppingItemsString(STORE);
 
   // insert that HTML into the DOM
   $('.js-shopping-list').html(shoppingListItemsString);
